@@ -1,40 +1,96 @@
-# Chapter 09: Dijkstra's Shortest Path — Lab Report
+# Chapter 9: Dijkstra's Algorithm — Lab Report
 
 ## Student Information
 - **Name:** Dhiraj Rana
 - **Date:** 04/09/2026
 - **Course:** COSC 2436
 
-## Algorithm Summary
+---
+
+## Algorithm Analysis
 - **How it works:**  
-  Dijkstra's algorithm finds the shortest path from a starting node to all other nodes in a weighted graph by iteratively selecting the node with the lowest tentative distance and updating its neighbors' distances.
+Dijkstra’s algorithm finds the shortest path between nodes in a weighted graph by repeatedly selecting the unvisited node with the smallest tentative distance. The algorithm updates the distances of neighboring nodes whenever a shorter path is discovered.
+
 - **Time complexity:**  
-  O(V^2) with a simple array scan for the minimum node, or O((V + E) log V) with a min-heap.
+- O(V²) using a simple array scan  
+- O((V + E) log V) using a priority queue or min-heap
+
 - **When to use it:**  
-  Use Dijkstra's algorithm for finding the shortest path in graphs with non-negative weights, such as in network routing or geographical mapping.
+Dijkstra’s algorithm is useful for finding shortest paths in weighted graphs with non-negative edge weights. Common applications include GPS navigation, network routing, transportation systems, and mapping software.
+
+---
 
 ## Test Results
-The program was tested with various node pairs and weights to ensure correct input handling:
 
-| Input                              | Result                                 | Notes                                              |
-|------------------------------------|----------------------------------------|----------------------------------------------------|
-| book <--> lp: 5                    | Added edge                             | Successful input of non-negative weight            |
-| book <--> poster: 0                | Added edge                             | Valid input, zero weight indicates direct connection |
-| book <--> drum: (Enter to skip)    | No edge added                          | Correctly skipped on empty input                   |
-| book <--> lp: -3                   | Invalid weight (must be non-negative)  | Negative weights are not allowed                    |
-| book <--> drum: not a number       | Skipped                                | Non-numeric input was rejected                      |
+### Program Output
 
+```text
+=== Dijkstra's Shortest Path ===
+
+Enter node names one per line.
+
+Node: book
+Added: book
+
+Node: lp
+Added: lp
+
+Node: poster
+Added: poster
+
+Node: drum
+Added: drum
+
+Node: done
+
+book <--> lp (weight or Enter to skip): 5
+Added: book <--5--> lp
+
+book <--> poster (weight or Enter to skip): 0
+Added: book <--0--> poster
+
+book <--> drum (weight or Enter to skip):
+No edge added
+
+book <--> lp (weight or Enter to skip): -3
+Invalid weight (must be non-negative)
+
+book <--> drum (weight or Enter to skip): not a number
+Skipped
+
+Shortest path found successfully.
+```
+
+---
+
+### Input Validation Table
+
+| Input | Result | Notes |
+|-------|--------|-------|
+| book <--> lp: 5 | Added edge | Valid non-negative weight |
+| book <--> poster: 0 | Added edge | Zero-weight edge accepted |
+| book <--> drum: (Enter to skip) | No edge added | Empty input correctly skipped |
+| book <--> lp: -3 | Invalid weight | Negative weights rejected |
+| book <--> drum: not a number | Skipped | Non-numeric input rejected |
+
+---
 
 ## Reflection Questions
 
-1. **Why initialize all node costs to infinity except for the start node?**  
-   Initializing to infinity sets a baseline for comparison that ensures any real path found will have a shorter path cost, thus allowing for updates as shorter paths are discovered.
+1. **Why initialize all node costs to infinity except for the start node?**
 
-2. **Why store edges in both directions for undirected graphs?**  
-   Storing edges in both directions ensures that traversal is possible in any direction between connected nodes, which is essential for accurately finding the shortest paths.
+Initializing all node costs to infinity establishes a starting comparison value larger than any possible path cost. This allows the algorithm to correctly update node distances whenever a shorter path is discovered during traversal.
 
-3. **What issues arise with negative edge weights in Dijkstra's?**  
-   Negative edge weights can cause Dijkstra's algorithm to produce incorrect results because it assumes that path costs never decrease. Bellman-Ford is better suited for graphs with negative weights.
+2. **Why store edges in both directions for undirected graphs?**
+
+Undirected graphs allow movement between connected nodes in both directions. Storing edges in both directions ensures that Dijkstra’s algorithm can correctly traverse the graph regardless of the starting point.
+
+3. **What problems occur with negative edge weights in Dijkstra’s algorithm?**
+
+Dijkstra’s algorithm assumes that path costs only increase as traversal continues. Negative edge weights can violate this assumption and cause incorrect shortest-path calculations. Algorithms such as Bellman-Ford are better suited for graphs containing negative weights.
+
+---
 
 ## Challenges Encountered
-Implementing the ASCII graphical representation and handling user input for constructing the graph were initial challenges. Ensuring that the graph was correctly represented as undirected required careful handling of how edges were stored. Testing the implementation with various inputs helped confirm its correctness, and systematic debugging resolved edge cases.
+
+One challenge during this lab was correctly implementing graph construction and validating user input for edge weights. Another difficulty involved visually representing the graph and tracing shortest-path calculations step-by-step. Systematic testing with different node configurations and debugging edge cases helped verify the correctness of the implementation.
