@@ -1,32 +1,46 @@
-# Lab 06: Breadth-First Search
+# Chapter 6: Breadth-First Search (BFS) — Lab Report
 
 ## Student Information
 - **Name:** Dhiraj Rana
 - **Date:** 03/05/2026
+- **Course:** COSC 2436
+
+---
+
+## Algorithm Summary
+
+- **How it works:**  
+Breadth-First Search (BFS) explores a graph level by level starting from a source node. The algorithm uses a queue to visit all neighboring nodes before moving deeper into the graph. BFS guarantees the shortest path in terms of the number of edges for unweighted graphs.
+
+- **Time complexity:**  
+O(V + E)
+
+- **When to use it:**  
+BFS is useful for finding shortest paths in unweighted graphs, exploring connected components, and traversing graphs level-by-level.
+
+---
 
 ## Key Concepts
-- **Graph Data Structures:** Graphs consist of nodes (vertices) connected by edges. In this lab, we represented the Texas road network as an undirected graph using an adjacency list.
-- **Breadth-First Search (BFS):** BFS explores nodes level by level from the starting node, using a queue to track the order of exploration. It's ideal for finding the shortest path by the number of edges in unweighted graphs.
-- **Shortest Path:** BFS finds the shortest path in terms of edges. It visits each node's neighbors before moving to the next level, ensuring the shortest path for unweighted graphs.
 
-## What I Learned
-I learned to implement the BFS algorithm in Python, particularly in using a queue for level-order traversal. I also deepened my understanding of graph representations using adjacency lists, which offer space efficiency for sparse graphs.
+### Graph Data Structures
 
-## Challenges
-The most difficult part was debugging the BFS implementation to correctly track visited nodes and ensure all paths were explored. I overcame this by adding print statements to trace the queue's state and visiting order, which helped identify when nodes were incorrectly revisited.
+Graphs consist of nodes (vertices) connected by edges. In this lab, the Texas road network was represented as an undirected graph using an adjacency list.
 
-## Reflection Questions
-1. **Why does BFS use a queue instead of a stack?**
-   BFS uses a queue to process nodes in the order they are discovered, ensuring that nodes are explored layer by layer. This first-in, first-out (FIFO) approach is crucial to exploring the shallowest nodes first.
-   
-2. **What's the difference between BFS shortest path and actual shortest distance?**
-   BFS finds the shortest path based on the number of edges, not actual physical distances. For weighted graphs where distance matters, algorithms like Dijkstra's or A* are better suited.
+### Breadth-First Search (BFS)
 
-3. **When would you use BFS vs DFS?**
-   Use BFS when you need the shortest path in an unweighted graph, or when exploring nodes closest to a source first. DFS is better for exploring all paths in a graph (e.g., finding connectivity).
+BFS explores neighboring nodes first before moving deeper into the graph. A queue is used to maintain the order of node exploration.
 
-## Output
+### Shortest Path
 
+BFS guarantees the shortest path by number of edges because it visits all nodes at the current depth level before continuing to the next level.
+
+---
+
+## Test Results
+
+### Program Output
+
+```text
 ============================================================
 PART 1: TEXAS ROAD NETWORK GRAPH
 ============================================================
@@ -78,20 +92,49 @@ Cities by distance (edges) from Houston:
 PART 4: BFS KEY CONCEPTS
 ============================================================
 
-    Why BFS finds shortest path:
-    1. Explores ALL nodes at distance 1 first
-    2. Then ALL nodes at distance 2
-    3. And so on...
-    
-    First time we reach destination = shortest path!
-    
-    BFS uses a QUEUE (FIFO):
-    - First In, First Out
-    - Process nodes in order they were discovered
-    
-    Time Complexity: O(V + E)
-    - Visit each vertex once: O(V)
-    - Check each edge once: O(E)
-    
-    Note: BFS finds shortest path by NUMBER OF EDGES.
-    For weighted graphs (actual distances), use Dijkstra's (Lab 9)!
+Why BFS finds shortest path:
+1. Explores ALL nodes at distance 1 first
+2. Then ALL nodes at distance 2
+3. And so on...
+
+First time we reach destination = shortest path!
+
+BFS uses a QUEUE (FIFO):
+- First In, First Out
+- Process nodes in order they were discovered
+
+Time Complexity: O(V + E)
+- Visit each vertex once: O(V)
+- Check each edge once: O(E)
+
+Note: BFS finds shortest path by NUMBER OF EDGES.
+For weighted graphs (actual distances), use Dijkstra's algorithm.
+```
+
+---
+
+## Reflection Questions
+
+1. **Why does BFS use a queue instead of a stack?**
+
+BFS uses a queue because it processes nodes in the order they are discovered. This first-in, first-out (FIFO) behavior ensures that nodes closer to the source are explored before deeper nodes, allowing BFS to correctly find the shortest path in unweighted graphs.
+
+2. **What is the difference between BFS shortest path and actual shortest distance?**
+
+BFS finds the shortest path based on the number of edges traveled, not actual physical distance or weighted cost. In weighted graphs, algorithms such as Dijkstra’s algorithm are required to calculate the true shortest distance.
+
+3. **When would you use BFS instead of DFS?**
+
+BFS is preferred when the shortest path in an unweighted graph is required or when exploring nodes level-by-level. DFS is more useful for exploring all possible paths, recursive traversal, and problems involving connectivity or backtracking.
+
+---
+
+## What I Learned
+
+This lab helped me understand how BFS explores graphs using a queue-based level-order traversal approach. I also learned how adjacency lists efficiently represent sparse graphs and how BFS guarantees the shortest path in terms of edge count.
+
+---
+
+## Challenges Encountered
+
+One challenge during this lab was correctly tracking visited nodes to prevent revisiting the same cities repeatedly. Adding debugging print statements to trace queue operations and visitation order helped identify logical errors and verify that BFS explored the graph correctly.
