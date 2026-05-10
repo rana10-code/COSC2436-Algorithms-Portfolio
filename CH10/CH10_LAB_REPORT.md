@@ -1,81 +1,111 @@
 # Chapter 10: Greedy Algorithms (Truck Packing) — Lab Report
 
 ## Student Information
-**Name:** Dhiraj Rana  
-**Date:** 04/16/2026 
+- **Name:** Dhiraj Rana
+- **Date:** 04/16/2026
+- **Course:** COSC 2436
+
+---
+
+## Algorithm Summary
+
+- **How it works:**  
+This greedy algorithm solves a truck packing optimization problem by selecting boxes based on volume. The algorithm sorts boxes in descending order by size and packs the largest boxes first until the truck reaches its maximum capacity.
+
+- **Time complexity:**  
+O(n log n) due to sorting the boxes before packing.
+
+- **When to use it:**  
+Greedy algorithms are useful when fast approximate solutions are acceptable. They work well for optimization problems where making locally optimal decisions can produce a reasonably efficient overall solution.
 
 ---
 
 ## Algorithm Understanding
 
-**What type of problem is this algorithm solving?**  
-This algorithm is solving a packing problem, which can be classified as an optimization problem.
+### What type of problem is this algorithm solving?
 
-**Is this greedy algorithm guaranteed to produce the optimal solution? Why or why not?**  
-No, this greedy algorithm is not guaranteed to produce the optimal solution because it makes local optimal choices (packing the largest boxes first) without considering future consequences.
+This algorithm solves a packing optimization problem where boxes must be selected and packed efficiently within a truck’s capacity constraints.
 
-**What is the greedy choice made in this algorithm?**  
-The greedy choice is to sort the boxes by volume in descending order and pack as many of the larger boxes as possible.
+### Is this greedy algorithm guaranteed to produce the optimal solution? Why or why not?
+
+No, the greedy algorithm is not guaranteed to produce the optimal solution because it makes locally optimal choices without evaluating all possible combinations of boxes.
+
+### What is the greedy choice made in this algorithm?
+
+The greedy choice is to prioritize larger boxes by sorting them in descending order of volume and packing them first.
 
 ---
 
 ## Implementation Questions
 
-**Why do we sort the boxes in descending order of volume before packing?**  
-Sorting in descending order ensures we fit the largest boxes first, maximizing the number of boxes packed by volume.
+### Why do we sort the boxes in descending order of volume before packing?
 
-**What would happen if we sorted the boxes in ascending order instead?**  
-Sorting in ascending order would likely leave less room for larger boxes, leading to inefficient use of space.
+Sorting by descending volume ensures that larger boxes are packed first, maximizing space utilization early in the packing process.
 
-**Why do we keep track of `used_volume`?**  
-We track `used_volume` to ensure we don't exceed the truck's total volume capacity while packing.
+### What would happen if we sorted the boxes in ascending order instead?
+
+Sorting in ascending order could leave awkward unused space that prevents larger boxes from fitting later, reducing packing efficiency.
+
+### Why do we keep track of `used_volume`?
+
+Tracking `used_volume` ensures that the total packed volume never exceeds the truck’s capacity.
 
 ---
 
 ## Extension: Dimension Constraints
 
-**Why is checking only volume not sufficient for real-world packing?**  
-Volume alone doesn't account for the actual shape and fit of boxes within the truck's dimensions.
+### Why is checking only volume not sufficient for real-world packing?
 
-**Give an example where a box fits by volume but not by dimensions.**  
-A long, flat box might have a suitable volume but may not fit due to the length exceeding the truck's width or height.
+Volume alone does not account for the physical dimensions and orientation of boxes. A box may fit by total volume but still fail to physically fit inside the truck.
 
-**How would you modify the algorithm to check dimension constraints before packing a box?**  
-The algorithm would need to compare each box's dimensions against the truck's (length, width, height) to verify fit before adding it.
+### Give an example where a box fits by volume but not by dimensions.
+
+A long box with dimensions 10x1x1 may have a small volume but still not fit inside a truck with a width smaller than 10 units.
+
+### How would you modify the algorithm to check dimension constraints before packing a box?
+
+The algorithm would compare each box’s length, width, and height against the truck’s dimensions before allowing it to be packed.
+
+---
+
+## Test Results
+
+| Input | Result | Notes |
+|-------|--------|-------|
+| Truck: 5x5x5, Box: 2x2x2 | Box fits | Single box fits successfully |
+| Truck: 5x5x5, Boxes: 2x2x2, 2x2x1 | Both boxes fit | Multiple boxes packed successfully |
+| Truck: 5x5x5, Boxes: 10x10x10 | Box does not fit | Exceeds truck capacity |
+| Truck: 5x5x5, Multiple 2x2x2 boxes | Some boxes fit | Edge case for volume utilization |
+| Invalid input values | Error message displayed | Input validation handled correctly |
 
 ---
 
 ## Reflection Questions
 
-**What is a limitation of this greedy approach? Provide a scenario where it fails to find the optimal solution.**  
-The greedy approach may fail when smaller combinations of boxes actually fit better without exceeding the volume, leading to wasted space.
+1. **What is a limitation of this greedy approach? Provide a scenario where it fails to find the optimal solution.**
 
-**How is this problem related to the Knapsack Problem?**  
-It's similar to the Knapsack Problem, where items (boxes) must be selected and packed to maximize value (space) without exceeding capacity.
+The greedy algorithm may fail when selecting large boxes first prevents better combinations of smaller boxes from fitting efficiently. In some cases, multiple small boxes may utilize the available space more effectively than one large box.
 
-**What type of algorithm would guarantee an optimal solution for this problem? What is the tradeoff?**  
-A dynamic programming approach could guarantee an optimal solution but would be computationally expensive and slower.
+2. **How is this problem related to the Knapsack Problem?**
 
-**If the truck had weight limits in addition to volume, how would the algorithm need to change?**  
-The algorithm would need to account for both weight and volume constraints, possibly adjusting the sorting and selection criteria.
+The truck packing problem is similar to the Knapsack Problem because both involve selecting items within a limited capacity while maximizing efficiency or value.
 
-**Why are greedy algorithms often preferred despite not always being optimal?**  
-Greedy algorithms are often preferred for their simplicity and efficiency in providing good-enough solutions quickly.
+3. **What type of algorithm would guarantee an optimal solution for this problem? What is the tradeoff?**
 
+Dynamic programming algorithms can guarantee optimal solutions because they evaluate many possible combinations systematically. However, they require significantly more computation time and memory than greedy approaches.
 
-## Test Results
+4. **If the truck had weight limits in addition to volume, how would the algorithm need to change?**
 
-| Input                                                        | Result                       | Notes                                |
-|--------------------------------------------------------------|------------------------------|--------------------------------------|
-| Truck: 5x5x5, Box: 2x2x2                                     | Box fits                     | Single box fits within the truck     |
-| Truck: 5x5x5, Boxes: 2x2x2, 2x2x1                            | Both boxes fit               | Multiple boxes fit together          |
-| Truck: 5x5x5, Boxes: 10x10x10                                | Box does not fit             | Single box larger than truck volume  |
-| Truck: 5x5x5, Boxes: 2x2x2, 2x2x2, 2x2x2, 2x2x2, 2x2x2       | Some boxes fit              | Test edge case for volume utilization |
-| Invalid Input (non-numeric/negative values)                  | Error message                | Properly handles invalid input       |
+The algorithm would need to track both total weight and total volume simultaneously before adding boxes. Selection decisions would likely consider both dimensions rather than volume alone.
 
+5. **Why are greedy algorithms often preferred despite not always being optimal?**
 
-## Challenge Encountered
-While implementing the pack_truck function, ensuring that boxes are packed efficiently within the truck's volume was challenging. The main issue was deciding on what basis to prioritize packing the boxes — by volume or dimensions.
-Ensured the boxes were sorted by volume in descending order. This way, larger boxes were packed first, maximizing the use of space.
-Considered dimension constraints to check if a box would physically fit within the truck, not just by volume.
-Feel free to include any other specific challenges you faced and how you overcame them! Let me know if you need further assistance.
+Greedy algorithms are preferred because they are simple, fast, and often produce good approximate solutions efficiently. In many real-world applications, obtaining a fast near-optimal solution is more practical than computing the perfect solution.
+
+---
+
+## Challenges Encountered
+
+One challenge during this lab was determining how to prioritize boxes for efficient packing. Initially, considering only volume caused unrealistic packing scenarios where boxes technically fit by volume but not by dimensions.
+
+To address this issue, the algorithm was adjusted to sort boxes by descending volume while also considering dimensional constraints. Testing different box combinations helped verify that the packing logic produced more realistic results.
