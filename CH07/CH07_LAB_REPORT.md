@@ -1,37 +1,72 @@
-# Chapter 07: Binary Trees and Tree Traversal — Lab Report
+# Chapter 7: Binary Trees and Tree Traversal — Lab Report
 
 ## Student Information
 - **Name:** Dhiraj Rana
 - **Date:** 03/26/2026
+- **Course:** COSC 2436
 
-## Algorithm Analysis
+---
 
-### Binary Search Tree
-- **Search Time (balanced):** O(log n)
-- **Search Time (unbalanced):** O(n)
-- **BST Property:** A binary search tree maintains the property that for each node, all elements in the left subtree are less, and all elements in the right subtree are greater.
+## Algorithm Summary
 
-### Traversals
+- **How it works:**  
+A Binary Search Tree (BST) is a hierarchical data structure where each node contains a value and references to left and right child nodes. The BST property ensures that values smaller than the current node are stored in the left subtree, while larger values are stored in the right subtree. Tree traversal algorithms systematically visit nodes in different orders to process or display the data.
 
-| Traversal | Order          | Use Case         |
-|-----------|----------------|------------------|
-| Preorder  | Root, Left, Right | Copying a tree   |
-| Inorder   | Left, Root, Right | Getting sorted elements |
-| Postorder | Left, Right, Root | Deleting a tree  |
+- **Time complexity:**  
+- Balanced BST Search: O(log n)  
+- Unbalanced BST Search: O(n)
+
+- **When to use it:**  
+Binary Search Trees are useful for efficient searching, insertion, and deletion operations. Traversal algorithms are commonly used for sorting, copying trees, evaluating expressions, and managing hierarchical data.
+
+---
+
+## Traversal Types
+
+| Traversal | Order | Common Use Case |
+|-----------|-------|-----------------|
+| Preorder | Root, Left, Right | Copying a tree |
+| Inorder | Left, Root, Right | Producing sorted output |
+| Postorder | Left, Right, Root | Deleting or freeing a tree |
+
+---
+
+## Test Results
+
+### Program Output
+
+```text
+[1, 3, 5, 7, 8, 9, 10]
+True
+False
+```
+
+### Traversal Analysis
+
+| Traversal Type | Result |
+|----------------|--------|
+| Inorder Traversal | Produces sorted values |
+| Search Existing Value | True |
+| Search Missing Value | False |
+
+---
 
 ## Reflection Questions
 
 1. **Why does inorder traversal give sorted output?**
-   - Inorder traversal visits nodes in ascending order for a binary search tree, as it processes the left subtree, then the node, and finally the right subtree.
+
+Inorder traversal visits the left subtree first, followed by the current node, and then the right subtree. Because a Binary Search Tree stores smaller values on the left and larger values on the right, this traversal naturally processes the nodes in ascending order.
 
 2. **When would a BST become unbalanced?**
-   - A BST becomes unbalanced when nodes are inserted in a sorted order, leading to a linear structure similar to a linked list.
 
-3. **What's the difference between BFS and DFS for trees?**
-   - BFS explores nodes level by level using a queue, while DFS explores as deep as possible along each branch before backtracking, typically using recursion or a stack.
+A BST becomes unbalanced when values are inserted in already sorted order or nearly sorted order. This creates a tree structure that resembles a linked list, reducing search efficiency from O(log n) to O(n).
 
-## Output
+3. **What is the difference between BFS and DFS for trees?**
 
-### [1, 3, 5, 7, 8, 9, 10]
-### True
-### False
+Breadth-First Search (BFS) explores nodes level-by-level using a queue, while Depth-First Search (DFS) explores one branch as deeply as possible before backtracking. DFS is commonly implemented recursively or with a stack.
+
+---
+
+## Challenges Encountered
+
+One challenge during this lab was understanding how recursive tree traversals visited nodes in different orders. Printing intermediate traversal steps and manually drawing the tree structure helped verify that preorder, inorder, and postorder traversals were working correctly.
