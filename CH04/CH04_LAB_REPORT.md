@@ -50,9 +50,9 @@ Quicksort employs a divide-and-conquer approach by repeatedly dividing an array 
 
 ## Test Output
 
-quicksort([10, 5, 2, 3]) => [2, 3, 5, 10]
-quicksort([33, 15, 10]) => [10, 15, 33]
-quicksort([3, 5, 2, 1, 4]) => [1, 2, 3, 4, 5]
-quicksort([1]) => [1]
-quicksort([]) => []
-quicksort([8, 7, 6, 5, 4, 3, 2, 1]) => [1, 2, 3, 4, 5, 6, 7, 8]
+[2, 3, 5, 10]
+[10, 15, 33]
+[1, 2, 3, 4, 5]
+[1]
+[]
+[1, 2, 3, 4, 5, 6, 7, 8]
