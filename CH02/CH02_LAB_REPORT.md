@@ -1,33 +1,77 @@
-# Lab 2: Selection Sort
+# Chapter 2: Selection Sort — Lab Report
 
 ## Student Information
 - **Name:** Dhiraj Rana
 - **Date:** 02/05/2026
+- **Course:** COSC 2436
 
-## Algorithm Analysis
+---
 
-### Selection Sort
-- **Time Complexity:** O(n²)
-- **How it works:** 
-  1. Iterate through the list.
-  2. For each position, find the smallest (or largest if reversing) element in the unsorted portion.
-  3. Swap it with the first unsorted element.
-  4. Repeat until the list is sorted.
+## Algorithm Summary
 
-## Array vs Linked List Analysis
+- **How it works:**  
+Selection sort repeatedly searches the unsorted portion of the list to find the smallest element. After finding the minimum value, the algorithm swaps it with the first unsorted position. This process continues until the entire list is sorted.
 
-| Operation | Array  | Linked List | Why?                                      |
-|-----------|--------|-------------|-------------------------------------------|
-| Read      | O(1)   | O(n)        | Direct index access for arrays.           |
-| Insert    | O(n)   | O(1)*       | Linked lists don't require shifting data. |
-| Delete    | O(n)   | O(1)*       | Linked lists manage pointers rather than data shift. |
+- **Time complexity:**  
+O(n²)
 
-\* For linked lists, O(1) insertions/deletions occur at the head.
+- **When to use it:**  
+Selection sort is best suited for small datasets and educational purposes where simplicity and understanding the sorting process are more important than performance efficiency.
+
+---
+
+## Test Results
+
+### Program Output
+
+```text
+Original Array:
+[64, 25, 12, 22, 11]
+
+Sorting...
+
+Pass 1:
+[11, 25, 12, 22, 64]
+
+Pass 2:
+[11, 12, 25, 22, 64]
+
+Pass 3:
+[11, 12, 22, 25, 64]
+
+Pass 4:
+[11, 12, 22, 25, 64]
+
+Final Sorted Array:
+[11, 12, 22, 25, 64]
+```
+
+### Performance Table
+
+| Input | Result | Notes |
+|-------|--------|-------|
+| [64, 25, 12, 22, 11] | [11, 12, 22, 25, 64] | Array sorted successfully |
+| Small dataset | Correct output | Performs adequately |
+| Large dataset | Slower performance | O(n²) complexity causes inefficiency |
+
+---
 
 ## Reflection Questions
 
-1. **Why is selection sort O(n²)?**
-   - It involves two nested loops: one to iterate over the array and another to find the smallest element in the remaining unsorted portion, leading to O(n²) complexity.
+1. **Why is selection sort considered inefficient for large datasets?**
 
-2. **When would you choose a linked list over an array?**
-   - When frequent insertions and deletions at the beginning or middle of the list are required, as linked lists provide efficient O(1) operations for these cases compared to O(n) for arrays.
+Selection sort repeatedly scans the unsorted portion of the array to locate the minimum value, resulting in many comparisons. As the dataset grows, the number of operations increases significantly, making the algorithm inefficient compared to faster sorting methods such as quicksort or mergesort.
+
+2. **What is the main idea behind selection sort?**
+
+The main idea behind selection sort is to repeatedly find the smallest element from the unsorted portion of the array and move it to its correct sorted position. The sorted portion gradually grows while the unsorted portion becomes smaller after each pass.
+
+3. **How does selection sort compare with more advanced sorting algorithms?**
+
+Selection sort is easier to understand and implement, but it performs much slower on large datasets because of its O(n²) time complexity. Advanced algorithms such as quicksort and mergesort use more efficient divide-and-conquer techniques that significantly reduce sorting time.
+
+---
+
+## Challenges Encountered
+
+One challenge during this lab was correctly tracking the minimum value during each iteration of the sorting process. Printing the array after each pass helped verify that the algorithm was swapping elements correctly and gradually sorting the dataset as expected.
