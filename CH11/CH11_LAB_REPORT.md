@@ -1,4 +1,4 @@
-# Chapter X: Knapsack Problem — Lab Report
+# Chapter 11: Dynamic Programming — Lab Report
 
 ## Student Information
 - **Name:** Dhiraj Rana
