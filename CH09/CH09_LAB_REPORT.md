@@ -14,11 +14,16 @@
   Use Dijkstra's algorithm for finding the shortest path in graphs with non-negative weights, such as in network routing or geographical mapping.
 
 ## Test Results
-The following results were obtained from running the program:
+The program was tested with various node pairs and weights to ensure correct input handling:
 
-| Input          | Result                                 | Notes                                              |
-|----------------|----------------------------------------|----------------------------------------------------|
-| Nodes: book, lp, poster, bass, drum, piano | Shortest path: book → lp → drum → piano | Total cost: 35 |  
+| Input                              | Result                                 | Notes                                              |
+|------------------------------------|----------------------------------------|----------------------------------------------------|
+| book <--> lp: 5                    | Added edge                             | Successful input of non-negative weight            |
+| book <--> poster: 0                | Added edge                             | Valid input, zero weight indicates direct connection |
+| book <--> drum: (Enter to skip)    | No edge added                          | Correctly skipped on empty input                   |
+| book <--> lp: -3                   | Invalid weight (must be non-negative)  | Negative weights are not allowed                    |
+| book <--> drum: not a number       | Skipped                                | Non-numeric input was rejected                      |
+
 
 ## Reflection Questions
 
