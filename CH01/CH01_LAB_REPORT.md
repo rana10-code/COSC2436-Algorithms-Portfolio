@@ -1,37 +1,47 @@
-# Chapter 1 Lab Report: Binary Search
+# Chapter 1: Binary Search vs Linear Search — Lab Report
 
 ## Student Information
 - **Name:** Dhiraj Rana
 - **Date:** 01/29/2026
 - **Course:** COSC 2436
 
-## Algorithm Summary
+---
 
+## Algorithm Summary
 
 ### Linear Search
 
-#### Description
-- Linear search iterates over each element in the array, comparing it with the target item.
-It stops when the target is found or the end of the array is reached.
+#### How It Works
+Linear search iterates through each element in an array one at a time until the target value is found or the end of the array is reached.
 
-#### Time Complexity: (O(n))
+#### Time Complexity
+- **Best Case:** O(1)
+- **Worst Case:** O(n)
 
-#### When to Use
-- Suitable for small datasets or unsorted data when simplicity is a priority.
+#### When to Use It
+Linear search is useful for small datasets or unsorted data where simplicity is more important than performance.
 
+---
 
 ### Binary Search
 
-#### Description
-- Binary search requires a sorted array. It repeatedly divides the search interval in half, checking the middle element, and determines if the target could be in the left or right sub-array.
+#### How It Works
+Binary search works on a sorted array by repeatedly dividing the search interval in half. The algorithm compares the target value with the middle element and continues searching in the appropriate half of the array.
 
-#### Time Complexity: (O(\log n))
+#### Time Complexity
+- **Best Case:** O(1)
+- **Worst Case:** O(log n)
 
-#### When to Use
-- Ideal for searching in large, sorted datasets when fast performance is required.
+#### When to Use It
+Binary search is ideal for large sorted datasets because it significantly reduces the number of comparisons required.
+
+---
 
 ## Test Results
 
+### Program Output
+
+```text
 Binary Search vs Linear Search Time Comparison
 ================================================
 Searching in a sorted list of 128 numbers
@@ -105,49 +115,51 @@ Binary search time: 0.00000095 seconds
 Linear search result: None
 Binary search result: None
 Binary search is 3.00x faster
+```
 
-Lab Challenge Answer:
-Maximum steps for binary search in 128 items:
-log2(128) = 7 steps maximum
+### Search Results Table
 
-### Search / Sort Labs
-| Input Size | Comparisons (Linear/Binary) | Time (s) (Linear/Binary)     |
-|------------|-----------------------------|------------------------------|
-| 128        | 63 / 7                      | 0.00000191 / 0.00000286      |
-| 128        | 63 / 7                      | 0.00000310 / 0.00000072      |
-| 128        | 127 / 7                     | 0.00000358 / 0.00000167      |
-| 128        | 49 / 6                      | 0.00000191 / 0.00000191      |
-| 128        | 99 / 7                      | 0.00000286 / 0.00000143      |
-| 128        | 24 / 6                      | 0.00000167 / 0.00000167      |
-| 128        | 74 / 7                      | 0.00000286 / 0.00000167      |
-| 128        | 9 / 4                       | 0.00000048 / 0.00000072      |
-| 128        | 89 / 7                      | 0.00000191 / 0.00000048      |
-| 128        | N/A                         | 0.00000286 / 0.00000095      |
+| Target Value | Linear Search Result | Binary Search Result | Linear Search Time (s) | Binary Search Time (s) |
+|--------------|---------------------|----------------------|------------------------|-------------------------|
+| 1            | 0                   | 0                    | 0.00000191             | 0.00000286              |
+| 64           | 63                  | 63                   | 0.00000310             | 0.00000072              |
+| 128          | 127                 | 127                  | 0.00000358             | 0.00000167              |
+| 50           | 49                  | 49                   | 0.00000191             | 0.00000191              |
+| 100          | 99                  | 99                   | 0.00000286             | 0.00000143              |
+| 25           | 24                  | 24                   | 0.00000167             | 0.00000167              |
+| 75           | 74                  | 74                   | 0.00000286             | 0.00000167              |
+| 10           | 9                   | 9                    | 0.00000048             | 0.00000072              |
+| 90           | 89                  | 89                   | 0.00000191             | 0.00000048              |
+| 200          | None                | None                 | 0.00000286             | 0.00000095              |
 
+### Lab Challenge Answer
+
+For a dataset containing 128 items, the maximum number of steps required for binary search is:
+
+```text
+log2(128) = 7
+```
+
+Therefore, binary search takes at most **7 steps** in the worst-case scenario.
+
+---
 
 ## Reflection Questions
 
 ### 1. Why is binary search faster than linear search?
 
-Binary search eliminates half of the remaining elements after each comparison,
-which greatly reduces the number of operations required. Linear search checks
-elements one at a time, making it slower for large datasets.
+Binary search eliminates half of the remaining search space after every comparison, which greatly reduces the number of operations required. Linear search checks each element sequentially, making it slower for large datasets.
 
 ### 2. Why must binary search use sorted data?
 
-Binary search depends on ordering to decide whether to move left or right in
-the dataset. Without sorted data, the algorithm cannot reliably eliminate half
-the search space.
+Binary search relies on ordered data to determine whether the target value is located in the left or right half of the array. Without sorting, the algorithm cannot correctly eliminate half of the remaining elements.
 
 ### 3. When would linear search still be useful?
 
-Linear search is useful for small datasets or unsorted collections where the
-overhead of sorting data is unnecessary.
+Linear search is useful for small datasets or unsorted collections where simplicity is more important than performance. It is also practical when the overhead of sorting data is unnecessary.
 
 ---
 
 ## Challenges Encountered
 
-One challenge was understanding how binary search updates the low and high
-indexes after each comparison. Testing the algorithm step-by-step with small
-arrays helped verify that the search interval was shrinking correctly.
+One challenge during this lab was correctly updating the low and high indexes during binary search. Testing the algorithm with small arrays and tracing each iteration step-by-step helped verify that the search interval was shrinking correctly and producing accurate results.
