@@ -123,3 +123,31 @@ log2(128) = 7 steps maximum
 | 128        | 9 / 4                       | 0.00000048 / 0.00000072      |
 | 128        | 89 / 7                      | 0.00000191 / 0.00000048      |
 | 128        | N/A                         | 0.00000286 / 0.00000095      |
+
+
+## Reflection Questions
+
+### 1. Why is binary search faster than linear search?
+
+Binary search eliminates half of the remaining elements after each comparison,
+which greatly reduces the number of operations required. Linear search checks
+elements one at a time, making it slower for large datasets.
+
+### 2. Why must binary search use sorted data?
+
+Binary search depends on ordering to decide whether to move left or right in
+the dataset. Without sorted data, the algorithm cannot reliably eliminate half
+the search space.
+
+### 3. When would linear search still be useful?
+
+Linear search is useful for small datasets or unsorted collections where the
+overhead of sorting data is unnecessary.
+
+---
+
+## Challenges Encountered
+
+One challenge was understanding how binary search updates the low and high
+indexes after each comparison. Testing the algorithm step-by-step with small
+arrays helped verify that the search interval was shrinking correctly.
